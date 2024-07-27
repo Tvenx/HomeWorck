@@ -20,7 +20,7 @@ public class Counter : MonoBehaviour
             StartCoroutine(IncrementCounter());
 
         if (!isCounting)
-            StopCoroutine(IncrementCounter());
+             StopAllCoroutines();
     }
 
     private IEnumerator IncrementCounter()
