@@ -3,32 +3,40 @@ using UnityEngine;
 
 public class Counter : MonoBehaviour
 {
+    [SerializeField] private float addValue = 1f;
     private float _counterValue = 0f;
     private float _interval = 0.5f;
 
-    public float addValue = 1f;
+    private Coroutine _coroutine;
+    private bool _isTimerActive = true;
 
     public float CounterValue => _counterValue;
 
-    private bool isCounting = false;
-
-    public void OnMouseDown()
+    private void Start()
     {
-        isCounting = !isCounting;
+        _coroutine = StartCoroutine(IncrementCounter(_interval));
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (_isTimerActive)
+                StopCoroutine(_coroutine);
+            else
+                _coroutine = StartCoroutine(IncrementCounter(_interval));
 
-        if (isCounting)
-            StartCoroutine(IncrementCounter());
-
-        if (!isCounting)
-             StopAllCoroutines();
+            _isTimerActive = !_isTimerActive;
+        }
     }
 
-    private IEnumerator IncrementCounter()
+    private IEnumerator IncrementCounter(float delay)
     {
+        var wait = new WaitForSeconds(delay);
         while (true)
         {
-            yield return new WaitForSeconds(_interval);
-            _counterValue += addValue;
+            yield return wait;
+            if (_isTimerActive)
+                _counterValue += addValue;
         }
     }
 }
