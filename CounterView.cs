@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CounterView : MonoBehaviour
 {
-    public TextMeshProUGUI counterText;
+    [SerializeField] private TextMeshProUGUI counterText;
 
     private Counter counter;
 
