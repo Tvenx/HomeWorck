@@ -1,9 +1,9 @@
 
 using UnityEngine;
 
-public class CubeController : MonoBehaviour
+public class CubeInteractor  : MonoBehaviour
 {
-    private CubeController _cubePrefab;
+    private CubeInteractor  _cubePrefab;
 
     [SerializeField] private float _explosionForce = 10f;
     [SerializeField] private float _spawnRadius = 2f;
