@@ -10,7 +10,7 @@ public class CubeSpawner
         for (int i = 0; i < newCubeCount; i++)
         {
             Vector3 spawnPosition = parentTransform.position + Random.insideUnitSphere * spawnRadius;
-            CubeController newCube = Object.Instantiate(cubePrefab, spawnPosition, Quaternion.identity);
+            CubeInteractor newCube = Object.Instantiate(cubePrefab, spawnPosition, Quaternion.identity);
             newCube.transform.localScale = parentTransform.localScale * scaleFactor;
 
             ColorRenderer.ApplyColor(newCube.gameObject);
