@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class CubeSpawner
 {
-    public static void SpawnCubes(int minRange, int maxRange, float explosionForce, CubeController cubePrefab, Transform parentTransform)
+    public static void SpawnCubes(int minRange, int maxRange, float explosionForce,float spawnRadius, float scaleFactor, CubeController cubePrefab, Transform parentTransform)
     {
         int newCubeCount = Random.Range(minRange, maxRange);
 
         for (int i = 0; i < newCubeCount; i++)
         {
-            Vector3 spawnPosition = parentTransform.position + Random.insideUnitSphere * 2f;
+            Vector3 spawnPosition = parentTransform.position + Random.insideUnitSphere * spawnRadius;
             CubeController newCube = Object.Instantiate(cubePrefab, spawnPosition, Quaternion.identity);
-            newCube.transform.localScale = parentTransform.localScale * 0.5f;
+            newCube.transform.localScale = parentTransform.localScale * scaleFactor;
 
             ColorRenderer.ApplyColor(newCube.gameObject);
             ExplosionHandler.ApplyExplosionForce(newCube.gameObject, parentTransform.position, explosionForce);
